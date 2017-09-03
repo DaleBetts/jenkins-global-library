@@ -3,7 +3,12 @@ pipeline {
   stages { 
     stage ('Git commit ref') {
       steps {
-        sh 'echo "test"'
+        echo "My Branch NAme: ${env.BRANCH_NAME}"
+        script {
+          def myLib = new linuxacademy.git.gitStuff();
+
+          echo "My Commit: ${myLib.gitCommit("${env.WORKSPACE}/.git")}"  
+        }  
       }
     }
   }
